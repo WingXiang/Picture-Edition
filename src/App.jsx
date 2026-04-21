@@ -55,8 +55,6 @@ export default function App() {
                 {activeTab === 'extract' && <DocExtractor scriptsLoaded={scriptsLoaded} />}
                 {activeTab === 'color' && <ColorTool />}
 
-                {activeTab === 'color' && <ColorTool />}
-
             </main>
             </div>
         </div>

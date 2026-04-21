@@ -16,7 +16,6 @@ const Sidebar = ({ activeTab, setActiveTab, isOpen, setIsOpen }) => {
         { id: 'color', name: '色彩工具', icon: <Pipette size={20}/>, desc: '取色與色票' },
 
     ];
-    ];
     return (
         <>
             {/* Overlay for mobile */}
