@@ -115,10 +115,10 @@ const BatchCompressor = () => {
         <div className="flex-1 flex h-full">
             {files.length === 0 ? (
                 <div className="flex-1 flex flex-col items-center justify-center p-10 bg-slate-50">
-                    <label className="flex flex-col items-center justify-center w-full max-w-xl h-64 border-2 border-dashed border-slate-300 rounded-3xl cursor-pointer hover:bg-white hover:border-primary-400 hover:shadow-lg transition-all bg-slate-50 group">
-                        <div className="p-4 bg-primary-100 rounded-full mb-4 text-primary-600 group-hover:scale-110 transition-transform"><Images size={32}/></div>
-                        <span className="text-xl font-bold text-slate-700">批量壓縮圖片</span>
-                        <span className="text-sm text-slate-400 mt-2">支援各種圖片格式，打包下載</span>
+                    <label className="flex flex-col items-center justify-center w-full max-w-xl h-48 md:h-64 border-2 border-dashed border-slate-300 rounded-3xl cursor-pointer hover:bg-white hover:border-primary-400 hover:shadow-lg transition-all bg-slate-50 group mx-4 md:mx-0">
+                        <div className="p-6 md:p-4 bg-primary-100 rounded-full mb-0 md:mb-4 text-primary-600 group-hover:scale-110 transition-transform flex items-center justify-center"><Images size={48} className="md:w-8 md:h-8" /></div>
+                        <span className="hidden md:block text-xl font-bold text-slate-700">批量壓縮圖片</span>
+                        <span className="hidden md:block text-sm text-slate-400 mt-2">支援各種圖片格式，打包下載</span>
                         <input type="file" multiple className="hidden" accept="image/*" onChange={e => handleFiles(e.target.files)} ref={fileInputRef}/>
                     </label>
                 </div>

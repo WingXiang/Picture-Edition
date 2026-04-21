@@ -1,10 +1,10 @@
 import React from 'react';
 import { 
     Maximize, Scissors, Scaling, 
-    FileArchive, Pipette, Zap, Images, SlidersHorizontal, Eraser, Cloud
+    FileArchive, Pipette, Zap, Images, SlidersHorizontal, Eraser, X
 } from 'lucide-react';
 
-const Sidebar = ({ activeTab, setActiveTab }) => {
+const Sidebar = ({ activeTab, setActiveTab, isOpen, setIsOpen }) => {
     const navItems = [
         { id: 'tune', name: '光影與調整', icon: <SlidersHorizontal size={20}/>, desc: '亮度、對比與翻轉' },
         { id: 'crop', name: '裁減圖片', icon: <Scissors size={20}/>, desc: '自由拖曳與比例裁切' },
@@ -16,30 +16,46 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
         { id: 'color', name: '色彩工具', icon: <Pipette size={20}/>, desc: '取色與色票' },
 
     ];
+    ];
     return (
-        <div className="w-full md:w-64 bg-white border-b md:border-b-0 md:border-r border-slate-200 flex flex-row md:flex-col h-auto md:h-full p-2 md:p-4 shrink-0 z-20 shadow-sm overflow-x-auto md:overflow-y-auto" style={{WebkitOverflowScrolling: 'touch'}}>
-            <div className="hidden md:flex items-center gap-2 mb-8 text-primary-500 font-bold text-xl px-2">
-                <Maximize /> OmniPixel
-            </div>
-            <nav className="flex flex-row md:flex-col gap-2 md:space-y-2 pb-1 md:pb-4 min-w-max md:min-w-0">
-                {navItems.map(item => (
-                    <button key={item.id} onClick={() => setActiveTab(item.id)}
-                        className={`flex items-center gap-2 md:gap-3 p-2 md:p-3 rounded-xl transition-all text-left ${
-                            activeTab === item.id ? 'bg-primary-50 text-primary-600 ring-1 ring-primary-200 shadow-sm' : 'text-slate-500 hover:bg-slate-50'
-                        }`}
-                    >
-                        {item.icon}
-                        <div className="hidden md:block">
-                            <div className="text-sm font-semibold">{item.name}</div>
-                            <div className="text-xs opacity-70 font-normal">{item.desc}</div>
-                        </div>
-                        <div className="block md:hidden text-sm font-semibold whitespace-nowrap">
-                            {item.name}
-                        </div>
+        <>
+            {/* Overlay for mobile */}
+            {isOpen && (
+                <div 
+                    className="md:hidden fixed inset-0 bg-black/50 z-40 transition-opacity"
+                    onClick={() => setIsOpen(false)}
+                />
+            )}
+            
+            {/* Sidebar content */}
+            <div className={`fixed md:relative top-0 left-0 h-full w-72 md:w-64 bg-white border-r border-slate-200 flex flex-col p-4 shrink-0 z-50 shadow-2xl md:shadow-sm transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
+                <div className="flex items-center justify-between mb-8 px-2">
+                    <div className="flex items-center gap-2 text-primary-500 font-bold text-xl">
+                        <Maximize /> OmniPixel
+                    </div>
+                    <button onClick={() => setIsOpen(false)} className="md:hidden text-slate-500 hover:text-red-500">
+                        <X size={24} />
                     </button>
-                ))}
-            </nav>
-        </div>
+                </div>
+                <nav className="flex flex-col space-y-2 overflow-y-auto pb-4">
+                    {navItems.map(item => (
+                        <button key={item.id} onClick={() => { setActiveTab(item.id); setIsOpen(false); }}
+                            className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all text-left ${
+                                activeTab === item.id ? 'bg-primary-50 text-primary-600 ring-1 ring-primary-200 shadow-sm' : 'text-slate-500 hover:bg-slate-50'
+                            }`}
+                        >
+                            <div className={`${activeTab === item.id ? 'text-primary-600' : 'text-slate-500'}`}>
+                                {item.icon}
+                            </div>
+                            <div>
+                                <div className="text-sm font-semibold">{item.name}</div>
+                                <div className="text-xs opacity-70 font-normal">{item.desc}</div>
+                            </div>
+                        </button>
+                    ))}
+                </nav>
+            </div>
+        </>
     );
 };
 
