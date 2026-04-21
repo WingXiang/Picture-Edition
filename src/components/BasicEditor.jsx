@@ -90,11 +90,11 @@ const BasicEditor = () => {
     return (
         <div className="flex-1 flex h-full">
             {!imgObj ? <FileUploader onFileSelect={handleFile} icon={Scaling} title="調整圖片大小" desc="無損防變形縮放與壓縮"/> : (
-                <div className="flex-1 flex h-full">
-                    <div className="flex-1 bg-slate-100 flex items-center justify-center p-8 overflow-hidden checkerboard-bg">
+                <div className="flex-1 flex flex-col lg:flex-row h-full overflow-hidden">
+                    <div className="flex-1 bg-slate-100 flex items-center justify-center p-4 lg:p-8 overflow-hidden checkerboard-bg">
                         <canvas ref={canvasRef} className="max-w-full max-h-full shadow-lg" />
                     </div>
-                    <div className="w-80 bg-white border-l p-6 shadow-xl flex flex-col z-10 overflow-y-auto">
+                    <div className="w-full lg:w-80 bg-white border-t lg:border-t-0 lg:border-l p-6 shadow-xl flex flex-col z-10 overflow-y-auto shrink-0 max-h-[50vh] lg:max-h-full">
                         <h3 className="font-bold text-lg mb-4 text-slate-800">調整設定</h3>
                         
                         <div className="flex justify-between items-center text-xs p-3 bg-slate-50 rounded-lg border border-slate-200 mb-4">

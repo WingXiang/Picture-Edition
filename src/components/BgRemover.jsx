@@ -105,16 +105,16 @@ const BgRemover = () => {
                             )}
 
                             {/* Images Container */}
-                            <div className="flex gap-8 w-full h-full p-4 items-center justify-center">
+                            <div className="flex flex-col md:flex-row gap-4 md:gap-8 w-full h-full p-4 items-center justify-center">
                                 {status === 'done' ? (
                                     <>
-                                        <div className="flex-1 flex flex-col h-full max-h-[60vh] max-w-[45%]">
+                                        <div className="flex-1 flex flex-col h-full max-h-[40vh] md:max-h-[60vh] max-w-full md:max-w-[45%]">
                                             <span className="text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider text-center">原圖</span>
                                             <div className="flex-1 rounded-xl overflow-hidden shadow-inner bg-slate-100 flex items-center justify-center p-2">
                                                 <img src={originalImg} className="max-w-full max-h-full object-contain opacity-70 filter blur-[2px] transition-all hover:filter-none hover:opacity-100" alt="Original" />
                                             </div>
                                         </div>
-                                        <div className="flex-1 flex flex-col h-full max-h-[60vh] max-w-[45%]">
+                                        <div className="flex-1 flex flex-col h-full max-h-[40vh] md:max-h-[60vh] max-w-full md:max-w-[45%]">
                                             <span className="text-xs font-bold text-primary-600 mb-2 uppercase tracking-wider text-center">去背完成 (透明背景)</span>
                                             <div className="flex-1 rounded-xl overflow-hidden shadow-2xl bg-transparent flex items-center justify-center p-2 relative">
                                                 <img src={URL.createObjectURL(resultBlob)} className="max-w-full max-h-full object-contain relative z-10" alt="Result" />
@@ -132,7 +132,7 @@ const BgRemover = () => {
                         {/* Footer / Actions */}
                         {status === 'done' && (
                             <div className="p-6 bg-slate-50 border-t border-slate-100 flex justify-center">
-                                <button onClick={handleDownload} className="w-80 bg-accent-500 hover:bg-accent-600 text-white py-4 rounded-xl font-bold shadow-lg shadow-accent-200 flex items-center justify-center gap-2 transition-transform active:scale-95 text-lg">
+                                <button onClick={handleDownload} className="w-full max-w-sm bg-accent-500 hover:bg-accent-600 text-white py-4 rounded-xl font-bold shadow-lg shadow-accent-200 flex items-center justify-center gap-2 transition-transform active:scale-95 text-lg">
                                     <Download size={24}/> 下載高清透明 PNG
                                 </button>
                             </div>

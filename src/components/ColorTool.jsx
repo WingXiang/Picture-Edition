@@ -40,22 +40,23 @@ const ColorTool = () => {
     return (
         <div className="flex-1 flex h-full">
             {!file ? <FileUploader onFileSelect={handleFile} icon={Pipette} title="色彩工具" desc="點擊圖片獲取色碼"/> : (
-                <div className="flex-1 flex h-full bg-slate-50 relative">
+                <div className="flex-1 flex flex-col lg:flex-row h-full bg-slate-50 relative overflow-hidden">
                     {showCursor && (
                         <div className="fixed pointer-events-none z-50 rounded-full border-4 border-white shadow-xl flex items-center justify-center"
                              style={{left:pos.x+20, top:pos.y+20, width:60, height:60, background:color.hex}}>
                              <span className="text-[10px] font-bold mix-blend-difference text-white">{color.hex}</span>
                         </div>
                     )}
-                    <div className="flex-1 flex items-center justify-center p-8 overflow-hidden cursor-crosshair checkerboard-bg" 
-                         onMouseMove={handleMove} onMouseLeave={()=>setShowCursor(false)} 
+                    <div className="flex-1 flex items-center justify-center p-4 lg:p-8 overflow-hidden cursor-crosshair checkerboard-bg touch-none" 
+                         onMouseMove={handleMove} onMouseLeave={()=>setShowCursor(false)}
+                         onTouchMove={(e) => handleMove(e.touches[0])} onTouchEnd={()=>setShowCursor(false)} onTouchCancel={()=>setShowCursor(false)} 
                          onClick={()=>{
                              navigator.clipboard.writeText(color.hex);
                              alert(`已複製色碼 ${color.hex}`);
                          }}>
                         <canvas ref={canvasRef} className="shadow-2xl max-w-full max-h-full"/>
                     </div>
-                    <div className="w-64 bg-white border-l border-slate-200 p-6 flex flex-col justify-center space-y-6 shadow-xl z-10">
+                    <div className="w-full lg:w-64 bg-white border-t lg:border-t-0 lg:border-l border-slate-200 p-6 flex flex-col justify-center space-y-6 shadow-xl z-10 shrink-0">
                         <div className="w-full aspect-video rounded-xl shadow-inner border border-slate-200" style={{background:color.hex}}></div>
                         <div className="space-y-4">
                             <div><label className="text-xs text-slate-400 font-bold">HEX</label><div className="text-xl font-mono font-bold text-primary-600">{color.hex}</div></div>

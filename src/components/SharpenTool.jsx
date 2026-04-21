@@ -65,13 +65,13 @@ const SharpenTool = () => {
             {!imgObj ? (
                 <FileUploader onFileSelect={handleFile} icon={Zap} title="圖片變清晰" desc="模糊圖片修復與銳化" />
             ) : (
-                <div className="flex-1 flex flex-col items-center justify-center p-8 bg-slate-50">
-                    <div className="max-w-6xl w-full h-full flex gap-6">
+                <div className="flex-1 flex flex-col items-center justify-center p-4 lg:p-8 bg-slate-50 overflow-hidden">
+                    <div className="max-w-6xl w-full h-full flex flex-col lg:flex-row gap-6">
                         <div className="flex-1 flex items-center justify-center bg-slate-100 rounded-xl overflow-hidden shadow-inner relative">
                             {processing && <div className="absolute inset-0 bg-white/50 z-10 flex items-center justify-center"><Loader2 className="animate-spin text-primary-600"/></div>}
                             <canvas ref={canvasRef} className="max-w-full max-h-full object-contain shadow-lg"/>
                         </div>
-                        <div className="w-80 bg-white rounded-xl shadow-lg border border-slate-100 p-6 flex flex-col">
+                        <div className="w-full lg:w-80 bg-white rounded-xl shadow-lg border border-slate-100 p-6 flex flex-col shrink-0">
                             <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2"><Zap className="text-accent-500"/> 智慧銳化</h3>
                             <div className="space-y-6">
                                 <div>

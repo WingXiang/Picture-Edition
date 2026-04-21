@@ -65,11 +65,11 @@ const TuneTool = () => {
                 <FileUploader onFileSelect={handleFile} icon={SlidersHorizontal} title="光影與調整" desc="亮度、色彩與翻轉修正" />
             ) : (
                 <div className="flex-1 flex flex-col lg:flex-row h-full">
-                    <div className="flex-1 bg-slate-100 flex items-center justify-center p-8 overflow-hidden checkerboard-bg">
+                    <div className="flex-1 bg-slate-100 flex items-center justify-center p-4 lg:p-8 overflow-hidden checkerboard-bg">
                         <canvas ref={canvasRef} className="max-w-full max-h-full shadow-lg transition-all duration-200 ease-out" />
                     </div>
 
-                    <div className="w-80 bg-white border-l border-slate-200 flex flex-col z-10 shadow-xl overflow-y-auto">
+                    <div className="w-full lg:w-80 bg-white border-t lg:border-t-0 lg:border-l border-slate-200 flex flex-col z-10 shadow-xl overflow-y-auto shrink-0 max-h-[50vh] lg:max-h-full">
                         <div className="p-6 border-b border-slate-100 flex justify-between items-center">
                             <h3 className="font-bold text-lg text-slate-800">影像調整</h3>
                             <button onClick={resetAdjustments} className="text-xs text-slate-500 hover:text-primary-600 flex items-center gap-1 bg-slate-100 px-2 py-1 rounded">

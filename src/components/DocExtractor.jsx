@@ -64,7 +64,7 @@ const DocExtractor = ({ scriptsLoaded }) => {
                             <button onClick={downloadAll} className="px-4 py-2 bg-accent-500 hover:bg-accent-600 text-white rounded shadow font-bold transition-colors">下載全部 ZIP</button>
                         </div>
                     </div>
-                    <div className="flex-1 overflow-y-auto grid grid-cols-6 gap-4 content-start">
+                    <div className="flex-1 overflow-y-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 content-start">
                         {images.map((img,i)=>(
                             <div key={i} className="bg-white p-2 rounded shadow hover:scale-105 transition-transform">
                                 <div className="aspect-square bg-slate-100 rounded mb-2 overflow-hidden flex items-center justify-center">

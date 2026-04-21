@@ -123,8 +123,8 @@ const BatchCompressor = () => {
                     </label>
                 </div>
             ) : (
-                <div className="flex-1 flex h-full">
-                    <div className="flex-1 p-8 bg-slate-50 overflow-y-auto">
+                <div className="flex-1 flex flex-col lg:flex-row h-full overflow-hidden">
+                    <div className="flex-1 p-4 lg:p-8 bg-slate-50 overflow-y-auto">
                         <div className="flex justify-between items-center mb-6">
                             <h2 className="text-2xl font-bold text-slate-800">已選擇 {files.length} 張圖片</h2>
                             <button onClick={() => fileInputRef.current.click()} className="px-4 py-2 bg-white border border-slate-300 rounded-lg text-sm font-medium hover:bg-slate-50 shadow-sm text-slate-700">
@@ -163,7 +163,7 @@ const BatchCompressor = () => {
                         </div>
                     </div>
 
-                    <div className="w-80 bg-white border-l border-slate-200 p-6 flex flex-col z-10 shadow-xl overflow-y-auto">
+                    <div className="w-full lg:w-80 bg-white border-t lg:border-t-0 lg:border-l border-slate-200 p-6 flex flex-col z-10 shadow-xl overflow-y-auto shrink-0 max-h-[50vh] lg:max-h-full">
                         <h3 className="font-bold text-lg mb-6">批量壓縮設定</h3>
                         
                         <div className="space-y-6">

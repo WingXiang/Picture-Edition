@@ -120,12 +120,13 @@ const CropTool = () => {
             {!imgObj ? (
                 <FileUploader onFileSelect={handleFile} icon={Scissors} title="裁減圖片" />
             ) : (
-                <>
-                    <div className="flex-1 bg-slate-100 flex items-center justify-center p-8 overflow-hidden relative checkerboard-bg"
-                        onMouseUp={handleMouseUp} onMouseLeave={handleMouseUp} onMouseMove={handleMouseMove}>
+                <div className="flex-1 flex flex-col lg:flex-row h-full overflow-hidden">
+                    <div className="flex-1 bg-slate-100 flex items-center justify-center p-4 lg:p-8 overflow-hidden relative checkerboard-bg touch-none"
+                        onMouseUp={handleMouseUp} onMouseLeave={handleMouseUp} onMouseMove={handleMouseMove}
+                        onTouchEnd={handleMouseUp} onTouchCancel={handleMouseUp} onTouchMove={(e) => handleMouseMove(e.touches[0])}>
                         <div className="relative shadow-xl" ref={containerRef} style={{ maxHeight: '90%', maxWidth: '90%' }}>
                             <img ref={imgRef} src={imgObj.src} className="block max-w-full max-h-[80vh] pointer-events-auto select-none" draggable={false}
-                                onMouseDown={handleMouseDown} style={{ cursor: 'crosshair' }}
+                                onMouseDown={handleMouseDown} onTouchStart={(e) => handleMouseDown(e.touches[0])} style={{ cursor: 'crosshair' }}
                             />
                             {selection && (
                                 <div className="absolute inset-0 pointer-events-none">
@@ -133,9 +134,9 @@ const CropTool = () => {
                                     <div className="absolute bg-black/60" style={{ bottom: 0, left: 0, width: '100%', height: `${(1 - (selection.y + selection.h)) * 100}%` }}></div>
                                     <div className="absolute bg-black/60" style={{ top: `${selection.y * 100}%`, left: 0, width: `${selection.x * 100}%`, height: `${selection.h * 100}%` }}></div>
                                     <div className="absolute bg-black/60" style={{ top: `${selection.y * 100}%`, right: 0, width: `${(1 - (selection.x + selection.w)) * 100}%`, height: `${selection.h * 100}%` }}></div>
-                                    <div className="absolute border-2 border-primary-500 shadow-[0_0_0_1px_rgba(255,255,255,0.5)] pointer-events-auto cursor-move"
+                                    <div className="absolute border-2 border-primary-500 shadow-[0_0_0_1px_rgba(255,255,255,0.5)] pointer-events-auto cursor-move touch-none"
                                         style={{ left: `${selection.x * 100}%`, top: `${selection.y * 100}%`, width: `${selection.w * 100}%`, height: `${selection.h * 100}%` }}
-                                        onMouseDown={handleMouseDown}>
+                                        onMouseDown={handleMouseDown} onTouchStart={(e) => { e.stopPropagation(); handleMouseDown(e.touches[0]); }}>
                                         <div className="absolute inset-0 border-t border-b border-white/30 h-1/3 top-1/3 pointer-events-none"></div>
                                         <div className="absolute inset-0 border-l border-r border-white/30 w-1/3 left-1/3 pointer-events-none"></div>
                                     </div>
@@ -144,7 +145,7 @@ const CropTool = () => {
                         </div>
                         <button onClick={() => { setImgObj(null); setFile(null); }} className="absolute top-4 left-4 bg-white p-2 rounded-full shadow hover:text-red-500 z-30"><X size={20} /></button>
                     </div>
-                    <div className="w-80 bg-white border-l border-slate-200 p-6 flex flex-col z-20 shadow-xl">
+                    <div className="w-full lg:w-80 bg-white border-t lg:border-t-0 lg:border-l border-slate-200 p-6 flex flex-col z-20 shadow-xl overflow-y-auto shrink-0 max-h-[50vh] lg:max-h-full">
                         <h3 className="font-bold text-lg mb-6">裁減設定</h3>
                         <div className="space-y-4">
                             <label className="text-sm font-bold text-slate-700">快速比例</label>
@@ -163,7 +164,7 @@ const CropTool = () => {
                             <button onClick={handleCrop} disabled={!selection || selection.w === 0} className="w-full bg-accent-500 hover:bg-accent-600 disabled:bg-slate-300 text-white py-3 rounded-xl font-bold shadow-lg flex items-center justify-center gap-2"><Crop size={18} /> 確認裁減</button>
                         </div>
                     </div>
-                </>
+                </div>
             )}
         </div>
     );

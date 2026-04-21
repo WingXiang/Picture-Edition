@@ -17,21 +17,24 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
 
     ];
     return (
-        <div className="w-64 bg-white border-r border-slate-200 flex flex-col h-full p-4 shrink-0 z-20 shadow-sm">
-            <div className="flex items-center gap-2 mb-8 text-primary-500 font-bold text-xl px-2">
+        <div className="w-full md:w-64 bg-white border-b md:border-b-0 md:border-r border-slate-200 flex flex-row md:flex-col h-auto md:h-full p-2 md:p-4 shrink-0 z-20 shadow-sm overflow-x-auto md:overflow-y-auto" style={{WebkitOverflowScrolling: 'touch'}}>
+            <div className="hidden md:flex items-center gap-2 mb-8 text-primary-500 font-bold text-xl px-2">
                 <Maximize /> OmniPixel
             </div>
-            <nav className="space-y-2 overflow-y-auto pb-4">
+            <nav className="flex flex-row md:flex-col gap-2 md:space-y-2 pb-1 md:pb-4 min-w-max md:min-w-0">
                 {navItems.map(item => (
                     <button key={item.id} onClick={() => setActiveTab(item.id)}
-                        className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all text-left ${
+                        className={`flex items-center gap-2 md:gap-3 p-2 md:p-3 rounded-xl transition-all text-left ${
                             activeTab === item.id ? 'bg-primary-50 text-primary-600 ring-1 ring-primary-200 shadow-sm' : 'text-slate-500 hover:bg-slate-50'
                         }`}
                     >
                         {item.icon}
-                        <div>
+                        <div className="hidden md:block">
                             <div className="text-sm font-semibold">{item.name}</div>
                             <div className="text-xs opacity-70 font-normal">{item.desc}</div>
+                        </div>
+                        <div className="block md:hidden text-sm font-semibold whitespace-nowrap">
+                            {item.name}
                         </div>
                     </button>
                 ))}
