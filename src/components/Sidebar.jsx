@@ -3,6 +3,7 @@ import {
     Maximize, Scissors, Scaling, 
     FileArchive, Pipette, Zap, Images, SlidersHorizontal, Eraser, X
 } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 const Sidebar = ({ activeTab, setActiveTab, isOpen, setIsOpen }) => {
     const navItems = [
@@ -30,7 +31,7 @@ const Sidebar = ({ activeTab, setActiveTab, isOpen, setIsOpen }) => {
             <div className={`fixed md:relative top-0 left-0 h-full w-72 md:w-64 bg-white border-r border-slate-200 flex flex-col p-4 shrink-0 z-50 shadow-2xl md:shadow-sm transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
                 <div className="flex items-center justify-between mb-8 px-2">
                     <div className="flex items-center gap-2 text-primary-500 font-bold text-xl">
-                        <Maximize /> OmniPixel
+                        <img src={logo} alt="OmniPixel Logo" className="w-8 h-8 object-contain" /> OmniPixel
                     </div>
                     <button onClick={() => setIsOpen(false)} className="md:hidden text-slate-500 hover:text-red-500">
                         <X size={24} />

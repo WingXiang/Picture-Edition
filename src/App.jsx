@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useExternalScripts } from './utils/helpers';
 import { Menu, Maximize, X } from 'lucide-react';
+import logo from './assets/logo.png';
 import Sidebar from './components/Sidebar';
 import TuneTool from './components/TuneTool';
 import CropTool from './components/CropTool';
@@ -36,7 +37,7 @@ export default function App() {
             {/* Mobile Header */}
             <div className="md:hidden flex items-center justify-between bg-white p-4 shadow-sm z-30 shrink-0">
                 <div className="flex items-center gap-2 text-primary-500 font-bold text-xl">
-                    <Maximize /> OmniPixel
+                    <img src={logo} alt="OmniPixel Logo" className="w-8 h-8 object-contain" /> OmniPixel
                 </div>
                 <button onClick={() => setIsSidebarOpen(true)} className="p-1 text-slate-600 hover:text-primary-600">
                     <Menu size={28} />
